@@ -100,13 +100,18 @@ async function main() {
       console.log("Something went wrong", e);
       return;
     }
+    const oneEther = parseEther("1");
     console.log("targetPrice", formatEther(targetPrice));
+    console.log("currentPrice", currentPrice);
     console.log("currentPrice", formatEther(currentPrice));
 
-    if (targetPrice > currentPrice) {
-      console.log("Trading Credit to Asset");
+    const inv = 1 / Number(formatEther(currentPrice));
+    console.log("inv", inv);
+
+    if (inv <= Number(formatEther(targetPrice))) {
+      console.log("BUY BUY BUY BUY BUY BUY Trading Credit to Asset");
       let priceDifference = calcPercentageDifference(targetPrice, currentPrice);
-      let tradeSize = (parseEther("1") * priceDifference) / 100n;
+      let tradeSize = parseEther("1"); //( * priceDifference) / 100n;
       // calc slippage (allow 1%)
       let maxSlippage = await calcSlippage(tradeSize, true);
       // buy fruit
@@ -116,10 +121,10 @@ async function main() {
         console.log("Something went wrong", e);
       }
     } else {
-      console.log("Trading Asset to Credit");
+      console.log("SELL SELL SELL SELL SELL Trading Asset to Credit");
       let priceDifference = calcPercentageDifference(currentPrice, targetPrice);
 
-      let tradeSize = (parseEther("1") * priceDifference) / 100n;
+      let tradeSize = parseEther("1"); //( * priceDifference) / 100n;
       // calc slippage
       let maxSlippage = await calcSlippage(tradeSize, false);
       // sell fruit

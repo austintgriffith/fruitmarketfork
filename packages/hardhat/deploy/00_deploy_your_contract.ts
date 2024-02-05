@@ -30,7 +30,7 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deploy } = hre.deployments;
   const signer = await hre.ethers.getSigner(deployer);
 
-  const YOUR_LOCAL_BURNER_ADDRESS = "0x92C8Fd39A4582E6Fe8bb5Be6e7Fdf6533566EA69"; //use punkwallet.io to create a burner that holds credits and can disperse
+  const YOUR_LOCAL_BURNER_ADDRESS = "0x98AfB7982F8E86AC8944Bd3c1b6376D1B8033944"; //use punkwallet.io to create a burner that holds credits and can disperse
 
   const ownerAddress = deployer;
   const dexOwner = "0xEC1A970311702f3d356eB010A500EE4B5ab5C3Bb";
